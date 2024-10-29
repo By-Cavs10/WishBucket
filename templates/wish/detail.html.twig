@@ -12,6 +12,8 @@
             <li>{{ wish.dateCreated|date('d/m/y') }}</li>
             <li>{{ wish.title }}</li>
             <li>{{ wish.description }}</li>
+
+
                 {% for category in wish.category %}
                     <li>{{ category.name }}</li>
                 {% endfor %}

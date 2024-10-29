@@ -29,7 +29,7 @@
                         <a class="nav-link active" aria-current="page" href="{{ path('main_home') }}">|  Accueil  |</a> <!-- Change 'home' par le nom de ta route d'accueil -->
                     </li>
                     <li class="nav-item text-center">
-                        <a class="nav-link active" aria-current="page" href="{{ path('main_aboutUs') }}">|  About Us  |      </a>
+                        <a class="nav-link active" aria-current="page" href="{{ path('main_aboutUs') }}">  About Us  |      </a>
                     </li>
                     {% if is_granted('IS_AUTHENTICATED') %}
                     <li class="nav-item text-center ">
@@ -40,10 +40,10 @@
                         <a class="nav-link active" aria-current="page" href="{{ path('wish_edit') }}">   Create |</a>
                     </li>
                     {% endif %}
-                        <li style="padding: 5px;"><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                        <li style="padding: 5px;"><a class =" text-decoration-none text-black" href="{{ path('app_logout') }}">Déconnexion  |</a></li>
                     {% else %}
-                        <li style="padding: 5px;"><a href="{{ path('app_login') }}">Connexion</a></li>
-                        <li style="padding: 5px;"><a href="{{ path('app_register') }}">Inscription</a></li>
+                        <li style="padding: 5px;"><a class =" text-decoration-none text-black" href="{{ path('app_login') }}">Connexion |</a></li>
+                        <li style="padding: 5px;"><a class =" text-decoration-none text-black" href="{{ path('app_register') }}">Inscription |</a></li>
                     {% endif %}
                     <!-- Ajoute d'autres éléments de menu ici si nécessaire -->
                 </ul>
