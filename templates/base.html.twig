@@ -1,17 +1,67 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('image/favicon.png') }}" type="image/x-icon">
+    <title>{% block title %}Document{% endblock %}</title>
+    {%block javascripts %}
+        {% block importmap %} {{ importmap('app') }} {% endblock %}
+    {% endblock %}
+</head>
+<body>
+<header class="bg-primary text-white py-3 background">
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    <div class="container text-center">
+        <img class="rounded mx-auto d-block display-1 mt-6" src= "{{ asset('image/logo.png') }}"  alt="logo">
+        <h1 class="display-1 mt-6">Bucket List</h1>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light  ">
+        <div class="container ">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav justify-content-center">
+                    <li class="nav-item text-center">
+                        <a class="nav-link active" aria-current="page" href="{{ path('main_home') }}">|  Accueil  |</a> <!-- Change 'home' par le nom de ta route d'accueil -->
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link active" aria-current="page" href="{{ path('main_aboutUs') }}">|  About Us  |      </a>
+                    </li>
+                    {% if is_granted('IS_AUTHENTICATED') %}
+                    <li class="nav-item text-center ">
+                        <a class="nav-link active" aria-current="page" href="{{ path('wish_list') }}">   To do List |</a>
+                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item text-center ">
+                        <a class="nav-link active" aria-current="page" href="{{ path('wish_edit') }}">   Create |</a>
+                    </li>
+                    {% endif %}
+                        <li style="padding: 5px;"><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    {% else %}
+                        <li style="padding: 5px;"><a href="{{ path('app_login') }}">Connexion</a></li>
+                        <li style="padding: 5px;"><a href="{{ path('app_register') }}">Inscription</a></li>
+                    {% endif %}
+                    <!-- Ajoute d'autres éléments de menu ici si nécessaire -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+<main class="container py-5 background-image">
+    {% block body %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="bg-light text-center py-4>
+    <div class="container">
+        <p>© Bucket-List, {{ "now"|date("Y") }}</p>
+    </div>
+</footer>
+</body>
 </html>

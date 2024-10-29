@@ -1,3 +1,61 @@
 body {
     background-color: skyblue;
 }
+
+@font-face {
+    font-family: 'Pricedown';
+    src: url('../fonts/SantaiRelax.ttf') format('truetype');
+}
+
+h1 {
+    font-family: 'Pricedown', sans-serif;
+    font-size: 3rem ;
+}
+
+.background {
+    background-image: url('../image/car.jpg'); /* Chemin vers ton image */
+    background-size: cover; /* Fait en sorte que l'image couvre tout le conteneur */
+    background-position: center; /* Centre l'image dans le conteneur */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+    height: 300px; /* Ajuste la hauteur selon tes besoins */
+    width: 100%; /* S'assure que le bandeau prend toute la largeur */
+    justify-content: center;
+
+
+}
+@font-face {
+    font-family: 'Jackbrush';
+    src: url('../fonts/Jackbrush.ttf') format('truetype');
+}
+
+p {
+    font-family: 'Jackbrush', sans-serif;
+    font-size: 3rem ;
+}
+
+@font-face {
+    font-family: 'GTA';
+    src: url('../fonts/pricedown.otf') format('truetype');
+}
+
+nav {
+    font-family: 'GTA', sans-serif;
+    font-size: 3rem ;
+}
+
+.background-image {
+    /*background-image: url('../image/gtaback.jpg');*/
+    background-size: cover; /* L'image couvre tout l'élément */
+    background-position: center; /* Centre l'image */
+    background-repeat: no-repeat; /* Pas de répétition */
+    min-height: 100vh; /* S'assure que l'image couvre tout l'écran */
+}
+
+/* Spécifie une hauteur minimum pour le main et le footer */
+main {
+    min-height: 20vh; /* Par exemple, 80% de la hauteur de l'écran */
+}
+
+footer {
+    min-height: 20vh; /* Par exemple, 20% de la hauteur de l'écran */
+}
