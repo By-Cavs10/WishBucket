@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+
+    {% set name = 'Bucket' %}
+
+    <h2>Bienvenue sur la page de {{ name }}</h2>
+
+    <p>{% if app.user %}
+        Coucou {{ app.user.email }}
+    {% else %}
+        Coucou invité
+        {% endif %}</p>
+
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WishController!{% endblock %}
+
+{% block body %}
+    <h1>Liste de Voeux</h1>
+
+    <table>
+        {% for wish in wishes %}
+            <tr>
+{#                <td>{{ wish.dateCreated|date('d/m/y H:i') }}</td>#}
+                <td><a href="{{ path('wish_detail',{'id':wish.id })}}">{{ wish.title }}</a></td>
+
+            </tr>
+
+        {% endfor %}
+    </table>
+{% endblock %}
