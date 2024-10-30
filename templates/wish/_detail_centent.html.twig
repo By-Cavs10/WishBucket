@@ -1,0 +1,38 @@
+
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <h1>Detail du Voeux {{ wish.id }}</h1>
+
+    <table class="textA">
+
+        <tr class="textA">
+            <li>{{ wish.dateCreated|date('d/m/y') }}</li>
+            <li>{{ wish.title }}</li>
+            <li>{{ wish.description }}</li>
+
+
+                {% for category in wish.category %}
+                    <li>{{ category.name }}</li>
+                {% endfor %}
+
+
+            {% for commentaire in wish.commentaires %}
+                <li>{{ commentaire.user.email }}</li>
+                <li>{{ commentaire.texte }}</li>
+            {% endfor %}
+
+
+
+
+        </tr>
+
+
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('wish_update', {'id' : wish.id }) }}">Editer</a>
+    <a class="btn btn-danger" href="{{ path('wish_delete', {'id' : wish.id, 'token' : csrf_token('delete'~wish.id) }) }}" onclick="return confirm('Etes vous sûrs ??');">Delete</a>
+    <a class="btn btn-primary" href="{{ path('commentaire_create', {'idWish' : wish.id}) }}">Ajouter un Commentaire</a>
+{% endblock %}

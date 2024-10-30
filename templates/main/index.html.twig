@@ -4,12 +4,12 @@
 
 {% block body %}
 
-    {% set name = 'Bucket' %}
+    {% set name = 'WishLand' %}
 
-    <h2>Bienvenue sur la page de {{ name }}</h2>
+    <h2 class="textA">Bienvenue sur la page de {{ name }}</h2>
 
-    <p>{% if app.user %}
-        Coucou {{ app.user.email }}
+    <p class="textA">{% if app.user %}
+         {{ app.user.email }}
     {% else %}
         Coucou invité
         {% endif %}</p>

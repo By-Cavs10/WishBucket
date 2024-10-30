@@ -25,12 +25,12 @@ h1 {
 }
 @font-face {
     font-family: 'Jackbrush';
-    src: url('../fonts/Jackbrush.ttf') format('truetype');
+    src: url('../fonts/PrettyDahlia.otf') format('truetype');
 }
 
 p {
     font-family: 'Jackbrush', sans-serif;
-    font-size: 3rem ;
+    font-size: 4rem ;
 }
 
 @font-face {
@@ -58,4 +58,30 @@ main {
 
 footer {
     min-height: 20vh; /* Par exemple, 20% de la hauteur de l'écran */
+}
+
+@font-face {
+    font-family: 'Hunderlands';
+    src: url('../fonts/AldotheApache.ttf') format('truetype');
+}
+
+.textA{
+    font-family: 'Hunderlands', sans-serif;
+    font-size: 1.6rem ;
+}
+
+@font-face {
+    font-family: 'Jedi';
+    src: url('../fonts/Starjedi.ttf') format('truetype');
+}
+
+.textB{
+    font-family: 'Jedi', sans-serif;
+    font-size: 1.6rem ;
+
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
 }

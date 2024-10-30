@@ -44,9 +44,16 @@ class Wish
     #[ORM\ManyToOne(inversedBy: 'wish')]
     private ?User $user = null;
 
+    /**
+     * @var Collection<int, Commentaire>
+     */
+    #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'wish')]
+    private Collection $commentaires;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     /**
@@ -169,6 +176,36 @@ class Wish
     public function setUsers(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): static
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires->add($commentaire);
+            $commentaire->setWish($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): static
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getWish() === $this) {
+                $commentaire->setWish(null);
+            }
+        }
 
         return $this;
     }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Wish;
 use App\Form\WishFormType;
+use App\Helper\Censurator;
 use App\Repository\WishRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\True_;
@@ -32,8 +33,14 @@ class WishController extends AbstractController
     }
 
     #[Route('/detail/{id}', name: '_detail', requirements: ['id' => '\d+'])]
-    public function detail(Wish $wish): Response
+    public function detail(Wish $wish, Request $request): Response
     {
+        if ($request->get('partial')) {
+            return $this->render('wish/_detail_centent.html.twig', [
+                'wish' => $wish,
+            ]);
+        }
+
         return $this->render('wish/detail.html.twig', [
             'wish' => $wish,
 
@@ -41,13 +48,15 @@ class WishController extends AbstractController
     }
 
     #[Route('/edit', name: '_edit')]
-    public function create(Request $request,  EntityManagerInterface $em): Response
+    public function create(Request $request, EntityManagerInterface $em, Censurator $censurator): Response
     {
         $wish = new Wish();
         $form = $this->createForm(WishFormType::class, $wish);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
+            $wish->setTitle($censurator->censorText($wish->getTitle()));
+            $wish->setDescription($censurator->censorText($wish->getDescription()));
             $em->persist($wish);
             $em->flush();
             $wish->setPublished(true);
@@ -55,8 +64,11 @@ class WishController extends AbstractController
             return $this->redirectToRoute('wish_list');
         }
 
+
+
         return $this->render('wish/edit.html.twig', [
             'form' => $form,
+
         ]);
 
 
